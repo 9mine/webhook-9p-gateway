@@ -1,0 +1,29 @@
+version: "3.5"
+
+services:
+  w9gw:
+    build:
+      context: .
+    networks:
+      - w9gw
+    image: dievri/webhook-9p-gateway:latest
+    ports:
+      - "8080:80"
+
+  inferno:
+    image: metacoma/inferno-os:latest
+    volumes:
+      - ./files/inferno/profile:/usr/inferno-os/lib/sh/profile:ro
+    networks:
+      - w9gw
+    entrypoint:
+      - sh
+      - -exc
+      - |
+        emu-g /dis/sh /lib/sh/profile / 1027
+    
+
+networks:
+  w9gw:
+    name: w9gw
+    driver: bridge
