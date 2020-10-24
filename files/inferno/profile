@@ -1,3 +1,6 @@
+load std
+WEBHOOK_DIR=/webhook_queue
 dir = $1
 port = $2
-listen -A 'tcp!*!'$port { export $dir & }
+test -d $WEBHOOK_DIR || mkdir $WEBHOOK_DIR
+listen -A 'tcp!*!'$port { export $dir & } 

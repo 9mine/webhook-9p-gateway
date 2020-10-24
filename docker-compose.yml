@@ -22,7 +22,7 @@ services:
       - sh
       - -exc
       - |
-        emu-g /dis/sh /lib/sh/profile / 1027
+        emu-g /dis/sh /lib/sh/profile / 1917
     
 
 networks:
