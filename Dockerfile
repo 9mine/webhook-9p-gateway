@@ -17,6 +17,7 @@ RUN luarocks install inspect
 RUN luarocks install router
 RUN luarocks install luasocket
 
-COPY --from=builder /luadata/data.so /usr/local/lib/lua/5.1/data.so
+COPY --from=builder /luadata/data.so /usr/local/openresty/luajit/lib/lua/5.1/data.so
+ADD https://raw.githubusercontent.com/9mine/9mine/master/libs/9p.lua /usr/local/openresty/luajit/lib/lua/5.1/9p.lua
 
 #ENTRYPOINT [ "/usr/local/bin/entrypoint.sh" ]
