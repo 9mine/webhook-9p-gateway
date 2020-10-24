@@ -7,6 +7,7 @@ RUN git clone https://github.com/lneto/luadata.git &&               \
     /luadata/GNUmakefile /luadata/Makefile && cd luadata && make    
 
 FROM openresty/openresty:alpine-fat
+RUN apk add lua
 RUN opm install                                       \
       bungle/lua-resty-template                       \
       jprjr/lua-resty-exec                            \
@@ -17,7 +18,7 @@ RUN luarocks install inspect
 RUN luarocks install router
 RUN luarocks install luasocket
 
-COPY --from=builder /luadata/data.so /usr/local/openresty/luajit/lib/lua/5.1/data.so
-ADD https://raw.githubusercontent.com/9mine/9mine/master/libs/9p.lua /usr/local/openresty/luajit/lib/lua/5.1/9p.lua
+COPY --from=builder /luadata/data.so /usr/local/openresty/site/lualib/data.so
+ADD https://raw.githubusercontent.com/9mine/9mine/master/libs/9p.lua /usr/local/openresty/site/lualib/9p.lua
 
 #ENTRYPOINT [ "/usr/local/bin/entrypoint.sh" ]
