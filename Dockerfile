@@ -10,6 +10,7 @@ FROM openresty/openresty:alpine-fat
 RUN apk add lua lua-dev
 RUN opm install                                       \
       bungle/lua-resty-template                       \
+      bungle/lua-resty-reqargs                        \
       jprjr/lua-resty-exec                            \
       agentzh/lua-resty-http                          \
       thibaultcha/lua-resty-jit-uuid
@@ -21,4 +22,5 @@ RUN luarocks install luasocket
 COPY --from=builder /luadata/data.so /usr/local/openresty/lualib/data.so
 ADD --chown=nobody:nogroup https://raw.githubusercontent.com/9mine/9mine/master/libs/9p.lua /usr/local/openresty/lualib/9p.lua
 
+ENTRYPOINT [ "sh", "-c", "openresty -g 'daemon off;'" ]
 #ENTRYPOINT [ "/usr/local/bin/entrypoint.sh" ]
