@@ -13,11 +13,17 @@ services:
       - "8080:80"
 
   inferno:
-    image: metacoma/inferno-os:latest
+    image: deivri/inferno-webhook:latest
+    build:
+      context: .
+      dockerfile: Dockerfile.webhook_queue
     volumes:
       - ./files/inferno/profile:/usr/inferno-os/lib/sh/profile:ro
     networks:
       - w9gw
+    environment: 
+      EXPORT_PORT: 1917
+      EXPORT_PATH: /
     entrypoint:
       - sh
       - -exc

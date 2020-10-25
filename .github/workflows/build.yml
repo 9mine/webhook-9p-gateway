@@ -1,4 +1,4 @@
-name: Minetest Container Image
+name: Webhook infra
 on: [push]
 jobs:
   build:
@@ -8,14 +8,20 @@ jobs:
         with:
            submodules: true
       
-      - name: build server image
+      - name: build openresty image
         run: docker build -t ${{ secrets.REGISTRY_USERNAME }}/webhook-9p-gateway:${GITHUB_REF##*/} .
+
+      - name: build openresty image
+        run: docker build -t ${{ secrets.REGISTRY_USERNAME }}/inferno-webhook:${GITHUB_REF##*/} -f Dockerfile.webhook_queue .
 
       - name: login to hub.docker.com
         run: docker login -u ${{ secrets.REGISTRY_USERNAME }} -p ${{ secrets.REGISTRY_PASSWORD }}
 
-      - name: push server image to registry
+      - name: push openresty image to registry
         run: docker image push ${{ secrets.REGISTRY_USERNAME }}/webhook-9p-gateway:${GITHUB_REF##*/}
+
+      - name: push openresty image to registry
+        run: docker image push ${{ secrets.REGISTRY_USERNAME }}/inferno-webhook:${GITHUB_REF##*/}
       
       - name: Notify Telegram
         uses: yanzay/notify-telegram@v0.1.0

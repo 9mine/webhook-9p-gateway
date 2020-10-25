@@ -1,0 +1,2 @@
+FROM dievri/inferno-os:latest
+ADD files/inferno/profile /usr/inferno-os/lib/sh/profile

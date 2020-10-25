@@ -1,10 +1,10 @@
 load std
-WEBHOOK_DIR=/webhook_queue
-#dir = $1
-#port = $2
+for host_var in `{ os env } { '{'$host_var'}' }
 
-dir = /
-port = 1917
+WEBHOOK_DIR=/webhook_queue
+
+dir = $EXPORT_PATH
+port = $EXPORT_PORT
 
 
 test -d $WEBHOOK_DIR || mkdir $WEBHOOK_DIR
