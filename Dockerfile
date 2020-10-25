@@ -20,6 +20,7 @@ RUN luarocks install router
 RUN luarocks install luasocket
 
 COPY --from=builder /luadata/data.so /usr/local/openresty/lualib/data.so
+COPY files/nginx/default.conf /etc/nginx/conf.d/default.conf
 ADD --chown=nobody:nogroup https://raw.githubusercontent.com/9mine/9mine/master/libs/9p.lua /usr/local/openresty/lualib/9p.lua
 
 ENTRYPOINT [ "sh", "-c", "openresty -g 'daemon off;'" ]
