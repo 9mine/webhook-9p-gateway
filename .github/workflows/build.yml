@@ -11,7 +11,7 @@ jobs:
       - name: build openresty image
         run: docker build -t ${{ secrets.REGISTRY_USERNAME }}/webhook-9p-gateway:${GITHUB_REF##*/} .
 
-      - name: build openresty image
+      - name: build inferno-webhook image
         run: docker build -t ${{ secrets.REGISTRY_USERNAME }}/inferno-webhook:${GITHUB_REF##*/} -f Dockerfile.webhook_queue .
 
       - name: login to hub.docker.com
@@ -20,7 +20,7 @@ jobs:
       - name: push openresty image to registry
         run: docker image push ${{ secrets.REGISTRY_USERNAME }}/webhook-9p-gateway:${GITHUB_REF##*/}
 
-      - name: push openresty image to registry
+      - name: push inferno-webhook image to registry
         run: docker image push ${{ secrets.REGISTRY_USERNAME }}/inferno-webhook:${GITHUB_REF##*/}
       
       - name: Notify Telegram
