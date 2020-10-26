@@ -7,8 +7,12 @@ services:
     networks:
       - w9gw
     image: dievri/webhook-9p-gateway:latest
+    environment:
+      9P_HOST: inferno
+      9P_PORT: 1917
     volumes:
       - ./files/nginx/default.conf:/etc/nginx/conf.d/default.conf
+      - ./files/nginx/nginx.conf:/usr/local/openresty/nginx/conf/nginx.conf
     ports:
       - "8080:80"
 
@@ -28,7 +32,7 @@ services:
       - sh
       - -exc
       - |
-        emu-g /dis/sh /lib/sh/profile / 1917
+        emu-g /dis/sh /lib/sh/profile
     
 
 networks:
