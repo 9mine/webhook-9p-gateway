@@ -8,8 +8,8 @@ services:
       - w9gw
     image: dievri/webhook-9p-gateway:latest
     environment:
-      9P_HOST: inferno
-      9P_PORT: 1917
+      NINEP_HOST: inferno
+      NINEP_PORT: 1917
     volumes:
       - ./files/nginx/default.conf:/etc/nginx/conf.d/default.conf
       - ./files/nginx/nginx.conf:/usr/local/openresty/nginx/conf/nginx.conf
