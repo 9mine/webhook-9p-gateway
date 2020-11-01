@@ -9,6 +9,7 @@ RUN git clone https://github.com/lneto/luadata.git &&               \
 FROM openresty/openresty:alpine-fat
 RUN apk add lua lua-dev
 RUN opm install                                       \
+			bungle/lua-resty-prettycjson										\
       bungle/lua-resty-template                       \
       bungle/lua-resty-reqargs                        \
       jprjr/lua-resty-exec                            \
