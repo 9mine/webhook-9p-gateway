@@ -24,6 +24,7 @@ file2chan $CMD_CHAN_DIR^/cmd {
       sh -c ${rget data} >$output_file >>[2]$output_file
   	}
 
+ls -ltr $CMD_CHAN_DIR
 
 test -d $WEBHOOK_DIR || mkdir $WEBHOOK_DIR
 listen -A 'tcp!*!'$port { export $dir & } &
