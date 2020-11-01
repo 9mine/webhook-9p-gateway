@@ -1,3 +1,4 @@
+load file2chan
 load std
 for host_var in `{ os env } { '{'$host_var'}' }
 
