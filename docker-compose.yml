@@ -17,7 +17,7 @@ services:
       - "8080:80"
 
   inferno:
-    image: deivri/inferno-webhook:latest
+    image: dievri/inferno-webhook:latest
     build:
       context: .
       dockerfile: Dockerfile.webhook_queue
@@ -28,6 +28,7 @@ services:
     environment: 
       EXPORT_PORT: 1917
       EXPORT_PATH: /
+      CMD_CHAN_DIR: /tmp/file2chan
     entrypoint:
       - sh
       - -exc
