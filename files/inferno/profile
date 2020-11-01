@@ -6,6 +6,17 @@ WEBHOOK_DIR=/webhook_queue
 dir = $EXPORT_PATH
 port = $EXPORT_PORT
 
+output_file := /tmp/file2chan/output_file
+file2chan /tmp/file2chan/cmd {
+      if {~ ${rget offset} 0} {
+        cat $output_file | putrdata
+      } {
+        rread ''
+      }
+    } {
+      sh -c ${rget data} >$output_file >>[2]$output_file
+  	}
+
 
 test -d $WEBHOOK_DIR || mkdir $WEBHOOK_DIR
 listen -A 'tcp!*!'$port { export $dir & } &
