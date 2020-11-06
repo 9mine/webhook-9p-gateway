@@ -28,4 +28,9 @@ file2chan $CMD_CHAN_DIR^/cmd {
 ls -ltr $CMD_CHAN_DIR
 
 test -d $WEBHOOK_DIR || mkdir $WEBHOOK_DIR
+
+#XXX refact
+mkdir /http2fs
+mount -A tcp!http2fs-inferno!1917 /http2fs
+
 listen -A 'tcp!*!'$port { export $dir & } &
