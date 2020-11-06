@@ -1,5 +1,6 @@
 load file2chan
 load std
+ndb/cs
 for host_var in `{ os env } { '{'$host_var'}' }
 
 WEBHOOK_DIR=/webhook_queue
